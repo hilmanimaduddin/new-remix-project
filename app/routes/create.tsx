@@ -27,20 +27,23 @@ export async function action({ request }: ActionFunctionArgs) {
     if (request.method.toLowerCase() === "post") {
       const formData = await request.formData();
       const name = formData.get("name") as string;
-      const age = +(formData.get("age") as string);
+      const age = formData.get("age") as string;
       const city = formData.get("city") as string;
 
+      const newAge = parseInt(age, 10);
+
       const formDataObject = {
-        name,
-        age,
+        name: name.toLocaleUpperCase(),
+        age: newAge,
         city,
       };
 
       await prisma.user.create({
         data: formDataObject,
       });
-      console.log(formData);
+      console.log("formDataObject", formDataObject);
       return redirect("/");
+      // return null;
     }
   } catch (error) {
     console.log(error);
@@ -61,17 +64,17 @@ export default function CreatePage() {
           <VStack spacing={4}>
             <FormControl id="name">
               <FormLabel>Name</FormLabel>
-              <Input type="text" name="name" placeholder="Name" />
+              <Input type="text" name="name" placeholder="Name" required />
             </FormControl>
 
             <FormControl id="age">
               <FormLabel>Age</FormLabel>
-              <Input type="number" name="age" placeholder="Age" />
+              <Input type="text" name="age" placeholder="Age" required />
             </FormControl>
 
             <FormControl id="city">
               <FormLabel>City</FormLabel>
-              <Input type="text" name="city" placeholder="City" />
+              <Input type="text" name="city" placeholder="City" required />
             </FormControl>
             <Box display="flex" justifyContent="space-between" width="100%">
               <Link to="/">

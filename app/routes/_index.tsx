@@ -66,9 +66,11 @@ export default function HomePage() {
             <Tr key={index}>
               <Td>{index + 1}</Td>
               <Td>{user.name}</Td>
-              <Td>{user.age}</Td>
+              <Td>
+                {user.age} {user.age > 1 ? "Years" : "Year"}
+              </Td>
               <Td>{user.city}</Td>
-              <Td> {moment(user.createdAt).fromNow()}</Td>
+              <Td>{moment(user.createdAt).format("LLLL")}</Td>
             </Tr>
           ))}
         </Tbody>
