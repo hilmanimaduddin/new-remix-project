@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 export const meta: MetaFunction = () => {
   return [
     { title: "My Project" },
-    { name: "description", content: "Welcome to Remix!" },
+    { name: "description", content: "Welcome to Home" },
   ];
 };
 
