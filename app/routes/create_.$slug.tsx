@@ -23,7 +23,7 @@ export default function CreatePage() {
   const { slug } = useParams();
 
   function copyToClipboard() {
-    const inputElement = "localhost:3000/" + slug;
+    const inputElement = "tell-it.vercel.app/" + slug;
     navigator.clipboard
       .writeText(inputElement)
       .then(() => {
@@ -52,7 +52,11 @@ export default function CreatePage() {
         </Box>
         <Box>
           <Text>Your Link:</Text>
-          <Input type="text" value={slug} readOnly />
+          <Input
+            type="text"
+            value={`https://tell-it.vercel.app/${slug}`}
+            readOnly
+          />
         </Box>
         <Button onClick={copyToClipboard}>Copy</Button>
         <Link to={`/${slug}`} target="_blank">
