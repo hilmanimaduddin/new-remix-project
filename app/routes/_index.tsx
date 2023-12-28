@@ -1,80 +1,39 @@
-import { Box, Table, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
-import { PrismaClient } from "@prisma/client";
-import type { MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
-import moment from "moment";
+import { Box, Text } from "@chakra-ui/react";
+import { MetaFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 
-const prisma = new PrismaClient();
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "My Project" },
-    { name: "description", content: "Welcome to Home" },
-  ];
-};
-
-export async function loader() {
-  try {
-    const users = await prisma.user.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-    return users;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export default function HomePage() {
-  const item = useLoaderData<typeof loader>();
-
+export default function Home() {
   return (
     <Box
-      m="auto"
       display={"flex"}
-      flexDirection={"column"}
-      p={4}
       justifyContent={"center"}
       alignItems={"center"}
+      h="100vh"
     >
       <Box
-        w={"100%"}
+        maxW="md"
         display={"flex"}
-        justifyContent={"space-between"}
+        flexDirection={"column"}
+        p={4}
         alignItems={"center"}
+        textAlign={"center"}
+        gap={4}
       >
-        <Text fontSize="2xl" fontWeight="bold" mb={4}>
-          Data Users
+        <Text fontWeight={"bold"} fontSize={"2xl"}>
+          Ayo, Buat Ucapan Untuk Orang Yang Penting Buat Kita...
         </Text>
-        <Text fontSize="2xl" fontWeight="bold" mb={4}>
-          <Link to="create">Click for Create</Link>
-        </Text>
+        <Link to="/create">
+          <Text
+            fontWeight={"bold"}
+            bgColor={"teal.500"}
+            color={"white"}
+            p={2}
+            borderRadius={"md"}
+          >
+            Click for Create
+          </Text>
+        </Link>
       </Box>
-      <Table variant="striped">
-        <Thead>
-          <Tr>
-            <Th>No</Th>
-            <Th>Name</Th>
-            <Th>Age</Th>
-            <Th>City</Th>
-            <Th>Create At</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {item.map((user, index) => (
-            <Tr key={index}>
-              <Td>{index + 1}</Td>
-              <Td>{user.name}</Td>
-              <Td>
-                {user.age} {user.age > 1 ? "Years" : "Year"}
-              </Td>
-              <Td>{user.city}</Td>
-              <Td>{moment(user.createdAt).format("LLLL")}</Td>
-            </Tr>
-          ))}
-        </Tbody>
-      </Table>
     </Box>
   );
 }

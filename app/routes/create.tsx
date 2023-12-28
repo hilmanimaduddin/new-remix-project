@@ -4,6 +4,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import { PrismaClient } from "@prisma/client";
@@ -27,22 +28,22 @@ export async function action({ request }: ActionFunctionArgs) {
     if (request.method.toLowerCase() === "post") {
       const formData = await request.formData();
       const name = formData.get("name") as string;
-      const age = formData.get("age") as string;
-      const city = formData.get("city") as string;
-
-      const newAge = parseInt(age, 10);
+      const address = formData.get("address") as string;
+      const content = formData.get("content") as string;
 
       const formDataObject = {
-        name: name.toLocaleUpperCase(),
-        age: newAge,
-        city,
+        name,
+        address,
+        content,
       };
 
-      await prisma.user.create({
+      const result = await prisma.content.create({
         data: formDataObject,
       });
       console.log("formDataObject", formDataObject);
-      return redirect("/");
+      if (result) {
+        return redirect(`/create/${result.id}`);
+      }
       // return null;
     }
   } catch (error) {
@@ -59,7 +60,7 @@ export default function CreatePage() {
       alignItems="center"
       height="100vh"
     >
-      <Box maxW="md" width="400px">
+      <Box maxW="md" width="400px" p={4}>
         <Form method="post">
           <VStack spacing={4}>
             <FormControl id="name">
@@ -67,14 +68,19 @@ export default function CreatePage() {
               <Input type="text" name="name" placeholder="Name" required />
             </FormControl>
 
-            <FormControl id="age">
-              <FormLabel>Age</FormLabel>
-              <Input type="text" name="age" placeholder="Age" required />
+            <FormControl id="address">
+              <FormLabel>Address</FormLabel>
+              <Input
+                type="text"
+                name="address"
+                placeholder="Address"
+                required
+              />
             </FormControl>
 
-            <FormControl id="city">
-              <FormLabel>City</FormLabel>
-              <Input type="text" name="city" placeholder="City" required />
+            <FormControl id="content">
+              <FormLabel>Content</FormLabel>
+              <Textarea name="content" placeholder="Content" required />
             </FormControl>
             <Box display="flex" justifyContent="space-between" width="100%">
               <Link to="/">
@@ -83,7 +89,7 @@ export default function CreatePage() {
                 </Button>
               </Link>
               <Button type="submit" colorScheme="teal" mt={4}>
-                Submit
+                Create
               </Button>
             </Box>
           </VStack>

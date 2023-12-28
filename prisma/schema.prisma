@@ -10,12 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Content {
   id        String        @id @unique @default(cuid())
   name      String
-  age       Int
-  city      String
+  address   String
+  content   String
   createdAt DateTime @default(now())
 
-  @@map("users")
+  @@map("content")
 }
