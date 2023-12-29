@@ -18,7 +18,7 @@ export default function LeftDown({ children }: any) {
           type: "spring",
           bounce: 0.4,
           duration: 5,
-          delay: 1,
+          delay: 0.8,
         }}
       >
         {children}
