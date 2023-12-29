@@ -24,6 +24,7 @@ export default function LeftUp({ children }: any) {
           type: "spring",
           bounce: 0.4,
           duration: 5,
+          delay: 2,
         }}
       >
         {children}
