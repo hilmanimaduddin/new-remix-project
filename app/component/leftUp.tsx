@@ -7,7 +7,7 @@ export default function LeftUp({ children }: any) {
     sm: -250,
     md: -350,
     lg: -450,
-    xl: -600,
+    xl: -630,
   });
   return (
     <Box>

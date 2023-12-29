@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 export default function RightUp({ children }: any) {
   const xValue = useBreakpointValue({
     base: 150,
-    sm: 270,
+    sm: 250,
     md: 350,
     lg: 450,
-    xl: 650,
+    xl: 600,
   });
   return (
     <div>

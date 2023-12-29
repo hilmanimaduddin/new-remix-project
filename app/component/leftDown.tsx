@@ -7,7 +7,7 @@ export default function LeftDown({ children }: any) {
     sm: -270,
     md: -350,
     lg: -450,
-    xl: -600,
+    xl: -630,
   });
   return (
     <Box>
