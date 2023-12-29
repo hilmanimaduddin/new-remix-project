@@ -5,7 +5,7 @@ import { Document } from "~/Document";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Ucapkan Isi Hatimu" },
+    { title: "Ungkapkan Isi Hatimu" },
     { name: "description", content: "Welcome to Home" },
     { name: "viewport", content: "width=device-width,initial-scale=1" },
   ];
