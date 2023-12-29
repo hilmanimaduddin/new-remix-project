@@ -41,7 +41,7 @@ export default function CreatePage() {
           <Text
             fontWeight={"bold"}
             fontSize={"2xl"}
-            color={"teal.500"}
+            color={"#043904"}
             as={"span"}
           >
             Selamat {item?.name},{" "}
@@ -58,9 +58,13 @@ export default function CreatePage() {
             readOnly
           />
         </Box>
-        <Button onClick={copyToClipboard}>Copy</Button>
+        <Button bgColor={"#043904"} color={"white"} onClick={copyToClipboard}>
+          Copy
+        </Button>
         <Link to={`/${slug}`} target="_blank">
-          <Button w={"100%"}>Go to Link</Button>
+          <Button bgColor={"#043904"} color={"white"} w={"100%"}>
+            Go to Link
+          </Button>
         </Link>
       </Box>
     </Box>

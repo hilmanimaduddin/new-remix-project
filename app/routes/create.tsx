@@ -84,11 +84,11 @@ export default function CreatePage() {
             </FormControl>
             <Box display="flex" justifyContent="space-between" width="100%">
               <Link to="/">
-                <Button colorScheme="teal" mt={4}>
+                <Button bgColor={"#043904"} color={"white"} mt={4}>
                   Back
                 </Button>
               </Link>
-              <Button type="submit" colorScheme="teal" mt={4}>
+              <Button type="submit" bgColor={"#043904"} color={"white"} mt={4}>
                 Create
               </Button>
             </Box>

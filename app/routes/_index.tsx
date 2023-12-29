@@ -6,11 +6,13 @@ export default function Home() {
   return (
     <Box
       display={"flex"}
+      flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"center"}
       h="100vh"
     >
       <Box
+        marginBlock={"auto"}
         maxW="md"
         display={"flex"}
         flexDirection={"column"}
@@ -25,7 +27,7 @@ export default function Home() {
         <Link to="/create">
           <Text
             fontWeight={"bold"}
-            bgColor={"teal.500"}
+            bgColor={"#043904"}
             color={"white"}
             p={2}
             borderRadius={"md"}
@@ -34,6 +36,9 @@ export default function Home() {
           </Text>
         </Link>
       </Box>
+      <Text mb={9} fontSize={"sm"} fontWeight={"bold"}>
+        by Phaethoele
+      </Text>
     </Box>
   );
 }
