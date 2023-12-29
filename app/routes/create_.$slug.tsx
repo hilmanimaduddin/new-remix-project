@@ -23,7 +23,7 @@ export default function CreatePage() {
   const { slug } = useParams();
 
   function copyToClipboard() {
-    const inputElement = "tell-it.vercel.app/" + slug;
+    const inputElement = "https://tell-it.vercel.app/" + slug;
     navigator.clipboard
       .writeText(inputElement)
       .then(() => {
