@@ -18,6 +18,7 @@ export default function RightDown({ children }: any) {
           type: "spring",
           bounce: 0.4,
           duration: 5,
+          delay: 1,
         }}
       >
         {children}
