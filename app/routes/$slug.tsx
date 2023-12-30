@@ -34,6 +34,7 @@ export default function Post() {
       justifyContent="center"
       alignItems="center"
       h="100vh"
+      w={"100%"}
       p={4}
     >
       <SlugElement />
