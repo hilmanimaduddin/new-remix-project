@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Text } from "@chakra-ui/react";
 import { MetaFunction } from "@remix-run/node";
 import { Link } from "@remix-run/react";
 

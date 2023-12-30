@@ -4,6 +4,15 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Spinner,
+  Text,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
@@ -14,6 +23,7 @@ import {
   type MetaFunction,
 } from "@remix-run/node";
 import { Form, Link } from "@remix-run/react";
+import { useState } from "react";
 
 const prisma = new PrismaClient();
 
@@ -53,6 +63,11 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function CreatePage() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleCreateData = () => {
+    setIsLoading(true);
+  };
   return (
     <Box
       display="flex"
@@ -60,6 +75,44 @@ export default function CreatePage() {
       alignItems="center"
       height="100vh"
     >
+      {isLoading && (
+        <>
+          <Modal
+            onClose={() => setIsLoading(false)}
+            isOpen={isLoading}
+            isCentered
+          >
+            <ModalOverlay />
+            <ModalContent>
+              <ModalBody>
+                <Box
+                  h={"30vh"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  flexDirection={"column"}
+                >
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
+                  />
+                  <Text
+                    fontWeight={"bold"}
+                    mt={4}
+                    fontSize={"lg"}
+                    color={"#043904"}
+                  >
+                    Loading...
+                  </Text>
+                </Box>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
+        </>
+      )}
       <Box maxW="md" width="400px" p={4}>
         <Form method="post">
           <VStack spacing={4}>
@@ -88,9 +141,16 @@ export default function CreatePage() {
                   Back
                 </Button>
               </Link>
-              <Button type="submit" bgColor={"#043904"} color={"white"} mt={4}>
+              <Button
+                onClick={handleCreateData}
+                type="submit"
+                bgColor={"#043904"}
+                color={"white"}
+                mt={4}
+              >
                 Create
               </Button>
+              <Button onClick={handleCreateData}> coba</Button>
             </Box>
           </VStack>
         </Form>

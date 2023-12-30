@@ -1,7 +1,19 @@
-import { Box, Button, Input, Text } from "@chakra-ui/react";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Box,
+  Button,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import { PrismaClient } from "@prisma/client";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { Link, useLoaderData, useParams } from "@remix-run/react";
+import { useRef, useState } from "react";
 
 const prisma = new PrismaClient();
 export async function loader({ params }: ActionFunctionArgs) {
@@ -22,12 +34,20 @@ export default function CreatePage() {
   const item = useLoaderData<typeof loader>();
   const { slug } = useParams();
 
+  const [isOpen, setIsOpen] = useState(false);
+  const leastDestructiveRef = useRef<HTMLButtonElement>(null);
+
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
   function copyToClipboard() {
     const inputElement = "https://tell-it.vercel.app/" + slug;
     navigator.clipboard
       .writeText(inputElement)
       .then(() => {
         console.log("Text copied to clipboard");
+        setIsOpen(true);
       })
       .catch((error) => {
         console.error("Failed to copy text: ", error);
@@ -66,6 +86,29 @@ export default function CreatePage() {
             Go to Link
           </Button>
         </Link>
+      </Box>
+      <Box>
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={leastDestructiveRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader>Selamat</AlertDialogHeader>
+              <AlertDialogBody>Link anda telah disalin!</AlertDialogBody>
+              <AlertDialogFooter>
+                <Button
+                  ref={leastDestructiveRef}
+                  colorScheme="blue"
+                  onClick={onClose}
+                >
+                  OK
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
       </Box>
     </Box>
   );
