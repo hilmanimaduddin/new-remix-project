@@ -150,7 +150,6 @@ export default function CreatePage() {
               >
                 Create
               </Button>
-              <Button onClick={handleCreateData}> coba</Button>
             </Box>
           </VStack>
         </Form>
