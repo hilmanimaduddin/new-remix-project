@@ -6,10 +6,7 @@ import {
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
   Spinner,
   Text,
@@ -27,12 +24,6 @@ import { useState } from "react";
 
 const prisma = new PrismaClient();
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Create User" },
-    { name: "description", content: "This is for create" },
-  ];
-};
 export async function action({ request }: ActionFunctionArgs) {
   try {
     if (request.method.toLowerCase() === "post") {
