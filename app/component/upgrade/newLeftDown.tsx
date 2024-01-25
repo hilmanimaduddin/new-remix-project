@@ -6,7 +6,7 @@ export default function NewLeftDown({ children }: any) {
     <Box>
       <motion.div
         initial={{ opacity: 0, x: 200, y: -300, rotate: 0, scale: 2 }}
-        animate={{ opacity: 1, x: -100, y: 0, rotate: 70, scale: 1 }}
+        animate={{ opacity: 1, x: -70, y: -20, rotate: 60, scale: 1 }}
         transition={{
           type: "spring",
           bounce: 0.4,
