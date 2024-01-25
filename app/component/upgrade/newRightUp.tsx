@@ -11,7 +11,7 @@ export default function NewRightUp({ children }: any) {
           type: "spring",
           bounce: 0.4,
           duration: 5,
-          delay: 1.8,
+          delay: 1.7,
         }}
       >
         {children}
