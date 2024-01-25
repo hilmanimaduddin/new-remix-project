@@ -83,7 +83,7 @@ export default function CreatePage() {
             isCentered
           >
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent marginInline={5}>
               <ModalBody>
                 <Box
                   h={"30vh"}

@@ -94,13 +94,14 @@ export default function CreatePage() {
           onClose={onClose}
         >
           <AlertDialogOverlay>
-            <AlertDialogContent>
+            <AlertDialogContent marginInline={5}>
               <AlertDialogHeader>Selamat</AlertDialogHeader>
               <AlertDialogBody>Link anda telah disalin!</AlertDialogBody>
               <AlertDialogFooter>
                 <Button
                   ref={leastDestructiveRef}
-                  colorScheme="blue"
+                  color={"white"}
+                  bgColor={"#043904"}
                   onClick={onClose}
                 >
                   OK
