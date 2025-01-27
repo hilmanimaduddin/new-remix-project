@@ -27,10 +27,12 @@ export default function Home() {
         <Link to="/create">
           <Text
             fontWeight={"bold"}
-            bgColor={"#043904"}
-            color={"white"}
-            p={2}
-            borderRadius={"md"}
+            fontSize={"2xl"}
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            bgClip="text"
+            _hover={{
+              bgGradient: "linear(to-r, #FF0080, #7928CA)",
+            }}
           >
             Click for Create
           </Text>

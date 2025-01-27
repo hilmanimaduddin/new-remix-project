@@ -13,25 +13,26 @@ import {
 import { PrismaClient } from "@prisma/client";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { Link, useLoaderData, useParams } from "@remix-run/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const prisma = new PrismaClient();
-export async function loader({ params }: ActionFunctionArgs) {
-  const slug = params.slug;
-  try {
-    const users = await prisma.content.findUnique({
-      where: {
-        id: slug,
-      },
-    });
-    return users;
-  } catch (error) {
-    console.log(error);
-  }
-}
+// const prisma = new PrismaClient();
+// export async function loader({ params }: ActionFunctionArgs) {
+//   const slug = params.slug;
+//   try {
+//     const users = await prisma.content.findUnique({
+//       where: {
+//         id: slug,
+//       },
+//     });
+//     return users;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 export default function CreatePage() {
-  const item = useLoaderData<typeof loader>();
+  // const item = useLoaderData<typeof loader>();
+  const [data, setData] = useState<any>(null);
   const { slug } = useParams();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,26 @@ export default function CreatePage() {
   const onClose = () => {
     setIsOpen(false);
   };
+
+  function fetchData() {
+    try {
+      const res = fetch(
+        `https://home-696-default-rtdb.asia-southeast1.firebasedatabase.app/tell-it/${slug}.json?auth=APtzecBUdjOrCA069ZogDzeFzxrlz41ByeqTqSxv`,
+        {
+          method: "GET",
+        }
+      )
+        .then((response) => response.json())
+        // .then((json) => console.log(json))
+        .then((json) => setData(json));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   function copyToClipboard() {
     const inputElement = "https://tell-it.vercel.app/" + slug;
@@ -64,7 +85,7 @@ export default function CreatePage() {
             color={"#043904"}
             as={"span"}
           >
-            Selamat {item?.name},{" "}
+            Selamat {data?.name},{" "}
           </Text>
           <Text fontWeight={"bold"} fontSize={"2xl"} as={"span"}>
             Ucapan anda telah selesai

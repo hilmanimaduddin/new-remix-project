@@ -13,7 +13,7 @@ export default function NewFallingLetter({ children }: any) {
           damping: 10,
           stiffness: 80,
           duration: 5,
-          delay: 5,
+          delay: 3.5,
         }}
       >
         {children}
